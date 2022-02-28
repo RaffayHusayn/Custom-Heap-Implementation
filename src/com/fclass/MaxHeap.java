@@ -52,6 +52,9 @@ public class MaxHeap {
             parent = parent/2;
         }
     }
+    public int peek(){
+        return maxHeap[1];
+    }
 
     public int[] values(){
         return Arrays.stream(maxHeap).skip(1).toArray();//skip the first one from maxHeap
