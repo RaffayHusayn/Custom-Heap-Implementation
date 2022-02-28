@@ -1,6 +1,7 @@
 package com.fclass;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class MaxHeap {
     int heapSize;//full size
@@ -86,4 +87,7 @@ public class MaxHeap {
         return temp;
     }
 
+    public int[] values(){
+        return Arrays.copyOfRange(maxHeap, 1, currentSize+1);//skip the first one from maxHeap
+    }
 }
