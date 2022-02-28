@@ -14,16 +14,32 @@ public class MaxHeap {
     }
 
     //inserting elements
-    public void insert(int num){
+    public void add(int num){
         //don't wanna store anything on the 0th index, so that we can use it for other stuff
         currentSize++;
         if(currentSize >= heapSize){
             currentSize--;
             throw new ArrayIndexOutOfBoundsException("can't add anymore");
-
         }else{
             maxHeap[currentSize] = num;
         }
+
+
+        //polling the heap
+        int index = currentSize;
+        int parent = index/2; //so 2,3 are child of 1 -> 2/2= 1 and 3/2=1
+        //currentsize > 1 because if currentSize =1 then it means it's the first element and can't have parent
+        while (maxHeap[index] > maxHeap[parent] && index > 1){
+            //replace maxHeap[parent] with maxHeap[currentSize]
+            int temp = maxHeap[parent];
+            maxHeap[parent] = maxHeap[index];
+            maxHeap[index] = temp;
+            index = parent;
+            parent = parent/2;
+        }
+
+
+
     }
 
     public int[] values(){
