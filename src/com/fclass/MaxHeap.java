@@ -1,12 +1,10 @@
 package com.fclass;
-
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 public class MaxHeap {
     int heapSize;//full size
     int currentSize;//currentSize
-    int maxHeap[];
+    int maxHeap[]; //this array powers the heap
 
     //constructor
     public MaxHeap(int size){
@@ -25,11 +23,36 @@ public class MaxHeap {
         }else{
             maxHeap[currentSize] = num;
         }
-
-
-        //polling the heap
         siftup(currentSize);
     }
+
+
+    //removing elements
+    public int pop(){
+        if(currentSize < 1 ){
+            throw new ArrayIndexOutOfBoundsException("there's no element in the heap to remove");
+        }
+        int temp = maxHeap[1];
+        maxHeap[1] = maxHeap[currentSize]; //because the first element of array is always empty so currentSize-1 is not gonna work
+        currentSize--;
+        siftdown();
+        return temp;
+    }
+
+
+    // getting elements without removing them
+    public int peek(){
+        return maxHeap[1];
+    }
+
+
+    //returns all the values in the heap
+    public int[] values(){
+        return Arrays.copyOfRange(maxHeap, 1, currentSize+1);//skip the first one from maxHeap
+    }
+
+
+    //helper methods to rearrange the heap after adding elements
     private void siftup(int index){
 
         int parent = index/2; //so 2,3 are child of 1 -> 2/2= 1 and 3/2=1
@@ -43,12 +66,9 @@ public class MaxHeap {
             parent = parent/2;
         }
     }
-    /*
-                           1
-                  2              3
-             4        5       6        7
-           8   9    10  11  12  13   14  15
-     */
+
+
+    //helper method to rearrange elements of the heap after popping element from the top
     private void siftdown(){
         int replaceIndex;
         int parent = 1;
@@ -72,22 +92,5 @@ public class MaxHeap {
             }
 
     }
-    public int peek(){
-        return maxHeap[1];
-    }
 
-    public int pop(){
-        if(currentSize < 1 ){
-            throw new ArrayIndexOutOfBoundsException("there's no element in the heap to remove");
-        }
-        int temp = maxHeap[1];
-        maxHeap[1] = maxHeap[currentSize]; //because the first element of array is always empty so currentSize-1 is not gonna work
-        currentSize--;
-        siftdown();
-        return temp;
-    }
-
-    public int[] values(){
-        return Arrays.copyOfRange(maxHeap, 1, currentSize+1);//skip the first one from maxHeap
-    }
 }
