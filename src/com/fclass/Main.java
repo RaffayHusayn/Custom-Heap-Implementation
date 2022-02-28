@@ -6,7 +6,7 @@ public class Main {
 	// write your code here
         MaxHeap heap = new MaxHeap(4);
         heap.add(3);
-        heap.add(0);
+        heap.add(6);
         heap.add(0);
         heap.add(4);
         int[] values = heap.values();

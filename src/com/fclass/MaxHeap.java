@@ -26,7 +26,21 @@ public class MaxHeap {
 
 
         //polling the heap
-        int index = currentSize;
+        siftup(currentSize);
+//        int index = currentSize;
+//        int parent = index/2; //so 2,3 are child of 1 -> 2/2= 1 and 3/2=1
+//        //currentsize > 1 because if currentSize =1 then it means it's the first element and can't have parent
+//        while (maxHeap[index] > maxHeap[parent] && index > 1){
+//            //replace maxHeap[parent] with maxHeap[currentSize]
+//            int temp = maxHeap[parent];
+//            maxHeap[parent] = maxHeap[index];
+//            maxHeap[index] = temp;
+//            index = parent;
+//            parent = parent/2;
+//        }
+    }
+    private void siftup(int index){
+
         int parent = index/2; //so 2,3 are child of 1 -> 2/2= 1 and 3/2=1
         //currentsize > 1 because if currentSize =1 then it means it's the first element and can't have parent
         while (maxHeap[index] > maxHeap[parent] && index > 1){
@@ -37,9 +51,6 @@ public class MaxHeap {
             index = parent;
             parent = parent/2;
         }
-
-
-
     }
 
     public int[] values(){
